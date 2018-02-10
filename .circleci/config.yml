@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Install Dependencies 
-          command: apt-get update -y; apt-get install -y open-ssh-client ca-certificates openssl zip;
+          command: apt-get update -y; apt-get install -y openssh-client ca-certificates openssl zip;
       - run:
           name: Zip Site Files
           command: cd ..; zip -r site-bundle.zip build; mkdir build/workspace; mv site-bundle.zip build/workspace 
