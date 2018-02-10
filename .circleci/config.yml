@@ -14,7 +14,7 @@ jobs:
           name: Test 
           command: |
             cd ..
-            zip -r "site-bundle-$CIRCLE_BUILD_NUM.zip"
+            zip -r "site-bundle-$CIRCLE_BUILD_NUM.zip" project
             ls 
 deployment:
   master:
