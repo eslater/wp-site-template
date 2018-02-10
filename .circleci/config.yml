@@ -1,4 +1,7 @@
 version: 2
+dependencies:
+  pre:
+    - apt-get update; apt-get install -y open-ssh-client ca-certificates openssl zip;
 jobs:
   build-job:
     docker:
@@ -6,11 +9,6 @@ jobs:
     working_directory: /tmp/build
     steps:
       - checkout
-      - run:
-         name: Install Zip 
-         command: |
-            apt-get update -y 
-            apt-get install -y zip 
       - run:
           name: Zip Site Files
           command: |
@@ -30,9 +28,6 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp/build/workspace
-      - run:
-          name: Install scp 
-          command: apt-get update -y && apt-get install -y openssh-client
       - run:
           name: Move Site Bundle to Droplet 
           command: scp -o StrictHostKeyChecking=no workspace/site-bundle.zip $DROPLET_USER@$DROPLET_IP:~
