@@ -8,10 +8,13 @@ jobs:
       - run:
           name: Test 
           command: |
-            set -x 
-            ls
-            pwd
             cd ..
-            pwd
-            touch test
+            zip -r project.zip project
             ls 
+deployment:
+  staging:
+    branch: master
+    command: |
+       ls
+       cd ..
+       ls
