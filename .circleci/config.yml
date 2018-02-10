@@ -6,8 +6,10 @@ jobs:
     steps:
       - checkout
       - run:
-         name: Install PHP libzip-dev
-         command: apt-get install -y zip 
+         name: Install Zip 
+         command: |
+            apt-get update -y 
+            apt-get install -y zip 
       - run:
           name: Test 
           command: |
