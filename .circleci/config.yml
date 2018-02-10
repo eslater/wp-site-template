@@ -28,6 +28,9 @@ jobs:
       - attach_workspace:
           at: /tmp/build/workspace
       - run:
+          name: Check 
+          command: ls 
+      - run:
           name: Move Site Bundle to Droplet 
           command: scp -o StrictHostKeyChecking=no workspace/site-bundle.zip $DROPLET_USER@$DROPLET_IP:~
       - run:
