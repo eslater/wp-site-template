@@ -19,7 +19,9 @@ jobs:
             mkdir build/workspace
             mv site-bundle.zip build/workspace 
       - persist_to_workspace:
-          root: /tmp/build/workspace
+          root: /tmp/build/
+          paths: workspace
+          
 
   deploy-job:
     docker:
