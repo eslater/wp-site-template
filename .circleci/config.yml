@@ -22,11 +22,14 @@ jobs:
     working_directory: /tmp/build
     steps:
       - run:
-        name: Stage Deploy 
-        command: |
-           ls
-           cd ..
-           ls
+          name: check 
+          command: ls 
+      - run:
+          name: cd 
+          command: cd .. 
+      - run:
+          name: check 
+          command: ls 
 
 workflows:
   version: 2
