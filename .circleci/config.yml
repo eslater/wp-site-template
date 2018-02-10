@@ -26,10 +26,7 @@ jobs:
           name: Install Dependencies 
           command: apt-get update; apt-get install -y openssh-client ca-certificates openssl zip;
       - attach_workspace:
-          at: /tmp/build/workspace
-      - run:
-          name: Check 
-          command: cd workspace; ls
+          at: /tmp/build/
       - run:
           name: Move Site Bundle to Droplet 
           command: scp -o StrictHostKeyChecking=no workspace/site-bundle.zip $DROPLET_USER@$DROPLET_IP:~
