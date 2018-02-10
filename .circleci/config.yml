@@ -31,8 +31,8 @@ jobs:
           name: Move Site Bundle to Droplet 
           command: scp -o StrictHostKeyChecking=no workspace/site-bundle.zip $DROPLET_USER@$DROPLET_IP:~
       - run:
-          name: Move Site Bundle to Droplet 
-          command: ssh -v $DROPLET_USER@$DROPLET_IP "unzip site-bundle.zip; cd site-bundle; ./create_site.sh"
+          name: Start Site 
+          command: ssh -v $DROPLET_USER@$DROPLET_IP "unzip site-bundle.zip; cd site-bundle; chmod +x create_site.sh; ./create_site.sh"
 
 workflows:
   version: 2
