@@ -12,25 +12,22 @@ jobs:
             apt-get update -y 
             apt-get install -y zip 
       - run:
-          name: Test 
-          command: |
-            ls
+          name: Zip Site Files
+          command: | 
             cd ..
-            ls 
+            zip -r "site-bundle.zip" build 
+  
   deploy-job:
     docker:
       - image: debian:stretch
     working_directory: /tmp/build
     steps:
       - run:
-          name: check 
-          command: set -x 
+          name: Move Site Bundle to Droplet 
+          command: scp "site-bundle.zip" $DROPLET_USER@$DROPLET_IP:~
       - run:
-          name: pwd 
-          command: pwd 
-      - run:
-          name: check 
-          command: ls 
+          name: Move Site Bundle to Droplet 
+          command: ssh -v $DROPLET_USER@$DROPLET_IP "unzip site-bundle.zip; cd site-bundle; ./create_site.sh"
 
 workflows:
   version: 2
