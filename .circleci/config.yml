@@ -32,7 +32,7 @@ jobs:
           command: scp -o StrictHostKeyChecking=no workspace/site-bundle.zip $DROPLET_USER@$DROPLET_IP:~
       - run:
           name: Start Site 
-          command: ssh -v $DROPLET_USER@$DROPLET_IP "unzip site-bundle.zip; cd site-bundle; chmod +x create_site.sh; ./create_site.sh"
+          command: ssh -v $DROPLET_USER@$DROPLET_IP "unzip -o site-bundle.zip; cd build; chmod +x create_site.sh; ./create_site.sh"
 
 workflows:
   version: 2
