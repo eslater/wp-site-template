@@ -1,5 +1,5 @@
 version: 2
-dependencies:
+machine:
   pre:
     - apt-get update; apt-get install -y open-ssh-client ca-certificates openssl zip;
 jobs:
