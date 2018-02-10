@@ -1,7 +1,4 @@
 version: 2
-machine:
-  pre:
-    - apt-get update; apt-get install -y open-ssh-client ca-certificates openssl zip;
 jobs:
   build-job:
     docker:
@@ -10,12 +7,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install Dependencies 
+          command: apt-get update -y; apt-get install -y open-ssh-client ca-certificates openssl zip;
+      - run:
           name: Zip Site Files
-          command: |
-            cd ..
-            zip -r site-bundle.zip build 
-            mkdir build/workspace
-            mv site-bundle.zip build/workspace 
+          command: cd ..; zip -r site-bundle.zip build; mkdir build/workspace; mv site-bundle.zip build/workspace 
       - persist_to_workspace:
           root: /tmp/build/
           paths: workspace
@@ -26,6 +22,9 @@ jobs:
       - image: debian:stretch
     working_directory: /tmp/build
     steps:
+      - run:
+          name: Install Dependencies 
+          command: apt-get update; apt-get install -y open-ssh-client ca-certificates openssl zip;
       - attach_workspace:
           at: /tmp/build/workspace
       - run:
