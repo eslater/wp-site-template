@@ -24,7 +24,7 @@ jobs:
     steps:
       - run:
           name: Install scp 
-          command: apt-get udpate -y && apt-get install scp 
+          command: apt-get update -y && apt-get install scp 
       - run:
           name: Move Site Bundle to Droplet 
           command: scp site-bundle.zip $DROPLET_USER@$DROPLET_IP:~
