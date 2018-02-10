@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
          name: Install PHP libzip-dev
-         command: sudo apt-get install -y libzip-dev
+         command: apt-get install -y zip 
       - run:
           name: Test 
           command: |
