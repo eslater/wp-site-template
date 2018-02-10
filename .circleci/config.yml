@@ -14,10 +14,10 @@ jobs:
           name: Test 
           command: |
             cd ..
-            zip -r project.zip project
+            zip -r "$CIRCLE_BUILD_NUM/project.zip"
             ls 
 deployment:
-  staging:
+  master:
     branch: master
     command: |
        ls
