@@ -27,7 +27,7 @@ jobs:
     steps:
       - run:
           name: File Exists 
-          command: ls site-bundle.zip 
+          command: pwd 
       - run:
           name: Install scp 
           command: apt-get update -y && apt-get install -y openssh-client
