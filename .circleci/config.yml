@@ -17,12 +17,17 @@ jobs:
             cd ..
             zip -r site-bundle.zip build 
             mv site-bundle.zip build 
- 
+            cd build
+            ls 
+
   deploy-job:
     docker:
       - image: debian:stretch
     working_directory: /tmp/build
     steps:
+      - run:
+          name: File Exists 
+          command: ls site-bundle.zip 
       - run:
           name: Install scp 
           command: apt-get update -y && apt-get install -y openssh-client
