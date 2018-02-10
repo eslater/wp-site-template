@@ -23,8 +23,11 @@ jobs:
     working_directory: /tmp/build
     steps:
       - run:
+          name: Install scp 
+          command: apt-get udpate -y && apt-get install scp 
+      - run:
           name: Move Site Bundle to Droplet 
-          command: scp "site-bundle.zip" $DROPLET_USER@$DROPLET_IP:~
+          command: scp site-bundle.zip $DROPLET_USER@$DROPLET_IP:~
       - run:
           name: Move Site Bundle to Droplet 
           command: ssh -v $DROPLET_USER@$DROPLET_IP "unzip site-bundle.zip; cd site-bundle; ./create_site.sh"
