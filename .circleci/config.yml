@@ -1,8 +1,9 @@
-version: 1
+version: 2
 jobs:
-  build:
+  build-job:
     docker:
       - image: debian:stretch
+    working_directory: /tmp/build
     steps:
       - checkout
       - run:
@@ -14,12 +15,15 @@ jobs:
           name: Test 
           command: |
             cd ..
-            zip -r "site-bundle-$CIRCLE_BUILD_NUM.zip" project
             ls 
-deployment:
-  master:
-    branch: master
-    command: |
-       ls
-       cd ..
-       ls
+  deploy-job:
+    docker:
+      - image: debian:stretch
+    working_directory: /tmp/build
+    steps:
+      - run:
+        name: Stage Deploy 
+        command: |
+           ls
+           cd ..
+           ls
