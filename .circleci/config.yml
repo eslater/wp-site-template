@@ -24,7 +24,7 @@ jobs:
     steps:
       - run:
           name: Install scp 
-          command: apt-get update -y && apt-get install openssh-client
+          command: apt-get update -y && apt-get install -y openssh-client
       - run:
           name: Move Site Bundle to Droplet 
           command: scp site-bundle.zip $DROPLET_USER@$DROPLET_IP:~
