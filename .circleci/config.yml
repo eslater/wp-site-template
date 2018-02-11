@@ -24,11 +24,12 @@ jobs:
       - run: 
           name: Build Image 
           command: |
-            docker build -t eslater/wp-site:$CIRCLE_BRANCH -t eslater/wp-site:latest docker/
+            docker build -t eslater/wp-site:$CIRCLE_BUILD_NUM -t eslater/wp-site:latest docker/
       - run: 
           name: Push to Docker Hub 
           command: |
-            docker push eslater/wp-site:$CIRCLE_BRANCH
+            docker push eslater/wp-site:$CIRCLE_BUILD_NUM
+            docker push eslater/wp-site:latest
   deploy-job:
     docker:
       - image: debian:stretch
@@ -37,8 +38,8 @@ jobs:
           name: Install Dependencies 
           command: apt-get update; apt-get install -y openssh-client ca-certificates openssl;
       - run:
-          name: Install Docker client
-          command: ssh -v $DROPLET_USER@$DROPLET_IP "./pull-latest-and-redeploy.sh"
+          name: Deploy Latest
+          command: ssh -o StrictHostKeyChecking=no $DROPLET_USER@$DROPLET_IP "./pull-latest-and-redeploy.sh"
 workflows:
   version: 2
   build-deploy:
