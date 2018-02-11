@@ -40,7 +40,7 @@ jobs:
           command: apt-get update; apt-get install -y openssh-client ca-certificates openssl;
       - run:
           name: Move Site Bundle to Droplet
-          command: scp -o StrictHostKeyChecking=no sql/initdata.zip $DROPLET_USER@$DROPLET_IP:~
+          command: scp -o StrictHostKeyChecking=no sql/initdata.sql $DROPLET_USER@$DROPLET_IP:~
       - run:
           name: Deploy Latest
           command: ssh -o StrictHostKeyChecking=no $DROPLET_USER@$DROPLET_IP "./pull-latest-and-redeploy.sh"
