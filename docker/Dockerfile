@@ -29,7 +29,7 @@ RUN a2enmod rewrite expires
 
 VOLUME /var/www/html
 
-#ADD wp-content /var/www/html/wp-content
+ADD wp-content /var/www/html/wp-content
 
 ENV WORDPRESS_VERSION 4.9.1
 ENV WORDPRESS_SHA1 892d2c23b9d458ec3d44de59b753adb41012e903

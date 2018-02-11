@@ -1,9 +1,8 @@
 version: '3.1'
 
 services:
-  demo_wordpress:
-    build: .
-    image: demo_wordpress
+  wp-site:
+    image: eslater/wp-site:latest 
     ports:
       - '80:80' # expose 80 on host and sent to 80 in container
     #  - '443:443' 
@@ -19,15 +18,15 @@ services:
     networks:
       - wordpress-network
     links:
-      - mariadb:demo_wordpress
+      - mariadb:wp-site
     volumes:
       - demo_site:/var/www/html
-    # deploy:
-    #   restart_policy:
-    #     condition: any
-    #     delay: 5s
-    #     max_attempts: 300
-    #     window: 120s  
+    #deploy:
+      #restart_policy:
+        #condition: any
+        #delay: 5s
+        #max_attempts: 300
+        #window: 120s  
   mariadb:
     image: mariadb  # this will use mariadb:latest
     environment:

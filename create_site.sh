@@ -1,12 +1,11 @@
 #!/bin/bash
 
 docker-compose -f docker/docker-compose.yml down
-docker image rm -f demo_wordpress 
+docker image rm -f eslater/wp-site 
 docker volume rm -f demodb
 docker volume rm -f demo_site
 docker image prune -f
 docker volume prune -f
-docker-compose -f docker/docker-compose.yml build
 docker-compose -f docker/docker-compose.yml up -d
 
 timeout=$((SECONDS+30))
